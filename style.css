@@ -3,16 +3,13 @@
 }
 
 body {
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    #BAC818 0%,
-    #357CBF 20%,
-    #6488BE 40%,
-    #643E8A 60%,
-    #9F365D 80%,
-    #D42E35 100%,
-  )
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 24%,
+      rgba(0, 212, 255, 1) 100%
+    );
 }
 h1,
 h3,
@@ -20,3 +17,27 @@ h4 {
   text-align: center;
   color: black;
 }   
+
+#header{
+    font-size: 30px;
+    position:center;
+
+}
+#container button {
+    background-color: aliceblue;
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(39, 39, 43);
+  }
+  #container button:hover {
+    background-color: rgb(224, 208, 163);
+    border: 1px solid rgb(255, 255, 255);
+  }
+
+  .navbar-brand strong {
+    display: inline-block;
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 30px;
+    font-size: 30px;
+    
+  }

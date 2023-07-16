@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Calculadora de média</title>
+    <title>Cadastro Prefeitura de São Leo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="./style.css" />
     <script>
         async function salvar() {
-            const response = await fetch( 
+            const response = await fetch(
                 "http://localhost:3000/users",
                 {
                     method: "GET",
@@ -27,11 +27,18 @@
 <!-- ############################### -->
 
 <body>
-    <nav class="navbar bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Cadastro Prefeitura de São Leo</a>
-        </div>
+    <Header>
+        <nav class="navbar bg-light ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="images/WhatsApp Image 2023-07-16 at 14.43.30.jpeg" alt="Logo" width="120" height="80"
+                        class="d-inline-block align-text-top">
+                    <strong>Cadastro Social de Famílias </strong>
+                </a>
+           
+    </div>
     </nav>
+</Header>
     <div id="fundo">
         <style>
             #fundo {
@@ -60,7 +67,8 @@
                     </div>
 
                     <div class="col p-2 was-validated">
-                        <input name="cpf" type="text" class="form-control" placeholder="CPF" aria-label="CPF" required />
+                        <input name="cpf" type="number" class="form-control" placeholder="CPF" aria-label="CPF"
+                            required />
                     </div>
                 </div>
 
@@ -72,21 +80,27 @@
                             aria-label="Data de Nascimento" required />
                     </div>
                     <div class="col p-2 was-validated">
-                        <input name="sexo" type="text" class="form-control" placeholder="Sexo" aria-label="Sexo"
-                            required />
+                        <select name="sexo" class="form-select form-control was-validated"
+                        aria-label=".form-select-sm example">
+                        <option selected>Sexo</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Feminino</option>
+                        <option value="3">Prefiro não informar</option>
+                    </select> 
                     </div>
 
                     <div class="col p-2 was-validated">
-                        <input name="telefone" type="number" class="form-control" placeholder="Telefone" aria-label="Telefone"
-                            required />
+                        <input name="telefone" type="number" class="form-control" placeholder="Telefone"
+                            aria-label="Telefone" required />
                     </div>
                     <div class="col p-2 was-validated">
-                        <select name="pcd" class="form-select form-control was-validated" aria-label=".form-select-sm example">
+                        <select name="pcd" class="form-select form-control was-validated"
+                            aria-label=".form-select-sm example">
                             <option selected>PCD</option>
                             <option value="1">Sim</option>
                             <option value="2">Não</option>
-                           
-                          </select>
+
+                        </select>
                     </div>
 
                 </div>
@@ -134,17 +148,22 @@
                                 aria-label="Grau de parentesco" required />
                         </div>
                         <div class="col p-2 was-validated">
-                            <input name="sexoDp" type="text" class="form-control" placeholder="Sexo" aria-label="Sexo"
-                                required />
+                            <select name="sexoDp" class="form-select form-control was-validated"
+                            aria-label=".form-select-sm example">
+                            <option selected>Sexo</option>
+                            <option value="1">Masculino</option>
+                            <option value="2">Feminino</option>
+                            <option value="3">Prefiro não informar</option>
+                        </select> 
                         </div>
 
                         <div class="col p-2 was-validated">
-                            <select name = "pcdDp" class="form-select form-control was-validated" aria-label=".form-select-sm example">
+                            <select name="pcdDp" class="form-select form-control was-validated"
+                                aria-label=".form-select-sm example">
                                 <option selected>PCD</option>
                                 <option value="1">Sim</option>
                                 <option value="2">Não</option>
-                               
-                              </select>
+                            </select>
                         </div>
                     </div>
                 </form>
@@ -215,35 +234,35 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" name="perdasPessoais">
                             <label class="form-check-label" for="flexCheckDefault">
-                               Perda de itens pessoais (roupas, sapatos, etc)
+                                Perda de itens pessoais (roupas, sapatos, etc)
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" name="bensMateriais">
                             <label class="form-check-label" for="flexCheckDefault">
-                               Perda de bens materiais (Móveis e eltrodomésticos)
+                                Perda de bens materiais (Móveis e eltrodomésticos)
                             </label>
                         </div>
 
-                        
+
 
                         <!-- Lançamento de Notas -->
-                        <div name ="container" class="container mt-3">
+                        <div name="container" class="container mt-3">
                             <div class="container">
                                 <div class="row">
 
                                 </div>
                             </div>
-                            <button type="submit" onclick="salvar()" name ="bt1" class="btn">
+                            <button type="submit" onclick="salvar()" name="bt1" class="btn">
                                 Salvar
                             </button>
-                            <button type="submit" onclick="aluno.limpar()" name ="bt2" class="btn">
+                            <button type="submit" onclick="aluno.limpar()" name="bt2" class="btn">
                                 Limpar
                             </button>
                         </div>
-                        <h3 class="text" name ="Retorno"></h3>
+                        <h3 class="text" name="Retorno"></h3>
                     </div>
-                    
+
                 </div>
 
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
@@ -254,6 +273,3 @@
 </body>
 
 </html>
-
-
-
