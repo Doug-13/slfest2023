@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+}
+
+body {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    #BAC818 0%,
+    #357CBF 20%,
+    #6488BE 40%,
+    #643E8A 60%,
+    #9F365D 80%,
+    #D42E35 100%,
+  )
+}
+h1,
+h3,
+h4 {
+  text-align: center;
+  color: black;
+}   
