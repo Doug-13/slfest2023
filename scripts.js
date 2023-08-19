@@ -1,8 +1,9 @@
 // ##############    Ampliar opções do formulário     ##############
-document.getElementById("gerar").addEventListener("click", function () {
-    const numeroFormularios = parseInt(document.getElementById("numero").value);
+document.getElementById("numero").addEventListener("input", function () {
+    const numeroFormularios = parseInt(this.value);
     const formulariosContainer = document.getElementById("formularios");
-    formulariosContainer.innerHTML = `
+    
+    formulariosContainer.innerHTML =`
     <div class="container">
         <div class="row">
            <div id="header" class="container">
@@ -11,8 +12,9 @@ document.getElementById("gerar").addEventListener("click", function () {
         </div>
     </div>`;
 
-    for (let i = 0; i < numeroFormularios; i++) {
-        const formulario = `
+    if (!isNaN(numeroFormularios) && numeroFormularios > 0) {
+        for (let i = 0; i < numeroFormularios; i++) {
+            const formulario = `
       
   <form action="/action_page.php">
       <div class="row">
@@ -69,6 +71,7 @@ document.getElementById("gerar").addEventListener("click", function () {
       `;
         formulariosContainer.innerHTML += formulario;
     }
+}
 });
 
 // ##############    buscar informações do CEP     ##############
@@ -168,38 +171,55 @@ form.addEventListener("submit", (event) => {
 
 
 // ###################   Validar CPF #####################
-// document.getElementById("vaasalidar").addEventListener("click", function() {
-//     const cpfInput = document.getElementById("cpf").value;
-//     const cpfNumeros = cpfInput.replace(/[^\d]/g, '');
+document.getElementById("cpf").addEventListener("input", function() {
+    const cpfInput = this.value;
+    const cpfNumeros = cpfInput.replace(/[^\d]/g, '');
 
-//     if (cpfNumeros.length !== 11 || /^\d{11}$/.test(cpfNumeros) === false) {
-//       document.getElementById("resultado").textContent = "CPF inválido.";
-//       return;
-//     }
+    if (cpfNumeros.length !== 11 || /^\d{11}$/.test(cpfNumeros) === false) {
+        document.getElementById("resultado").textContent = "CPF inválido";
+        document.getElementById("resultado").style.color = "red";
+        document.getElementById("resultado").style.fontWeight = "bold";
+        document.getElementById("resultado").style.backgroundColor = "rgb(255, 255, 255,0.5";
+        document.getElementById("resultado").style.borderRadius= "5px";
+      return;
+    }
 
-//     let soma = 0;
-//     for (let i = 0; i < 9; i++) {
-//       soma += parseInt(cpfNumeros.charAt(i)) * (10 - i);
-//     }
-//     let resto = (soma * 10) % 11;
-//     if (resto === 10 || resto === 11) resto = 0;
+    let soma = 0;
+    for (let i = 0; i < 9; i++) {
+      soma += parseInt(cpfNumeros.charAt(i)) * (10 - i);
+    }
+    let resto = (soma * 10) % 11;
+    if (resto === 10 || resto === 11) resto = 0;
 
-//     if (resto !== parseInt(cpfNumeros.charAt(9))) {
-//       document.getElementById("resultado").textContent = "CPF inválido.";
-//       return;
-//     }
+    if (resto !== parseInt(cpfNumeros.charAt(9))) {
+        document.getElementById("resultado").textContent = "CPF inválido";
+        document.getElementById("resultado").style.color = "red";
+        document.getElementById("resultado").style.fontWeight = "bold";
+        document.getElementById("resultado").style.backgroundColor = "rgb(255, 255, 255,0.5";
+        document.getElementById("resultado").style.borderRadius= "5px";
+      return;
+    }
 
-//     soma = 0;
-//     for (let i = 0; i < 10; i++) {
-//       soma += parseInt(cpfNumeros.charAt(i)) * (11 - i);
-//     }
-//     resto = (soma * 10) % 11;
-//     if (resto === 10 || resto === 11) resto = 0;
+    soma = 0;
+    for (let i = 0; i < 10; i++) {
+      soma += parseInt(cpfNumeros.charAt(i)) * (11 - i);
+    }
+    resto = (soma * 10) % 11;
+    if (resto === 10 || resto === 11) resto = 0;
 
-//     if (resto !== parseInt(cpfNumeros.charAt(10))) {
-//       document.getElementById("resultado").textContent = "CPF inválido.";
-//       return;
-//     }
+    if (resto !== parseInt(cpfNumeros.charAt(10))) {
+      document.getElementById("resultado").textContent = "CPF inválido";
+      document.getElementById("resultado").style.color = "red";
+      document.getElementById("resultado").style.fontWeight = "bold";
+      document.getElementById("resultado").style.backgroundColor = "rgb(255, 255, 255,0.5";
+      document.getElementById("resultado").style.borderRadius= "5px";
+      return;
+    }
 
-//     document.getElementById("resultado").textContent = "CPF válido.";
-//   });
+    document.getElementById("resultado").textContent = "CPF válido";
+    document.getElementById("resultado").style.color = "green";
+    document.getElementById("resultado").style.fontWeight = "bold";
+    document.getElementById("resultado").style.backgroundColor = "rgb(255, 255, 255,0.5";
+    document.getElementById("resultado").style.borderRadius= "5px";
+});
+
