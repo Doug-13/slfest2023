@@ -52,7 +52,7 @@
         <div class="container">
             <div class="row">
                 <div id="header" class="container">
-                    <h3>Informações Pessoais</h3>
+                    <h3>Informações Responsável da Família</h3>
                 </div>
             </div>
         </div>
@@ -70,15 +70,16 @@
                         <input id="cpf" type="number" class="form-control" placeholder="CPF" aria-label="CPF"
                             required />
                     </div>
+                    <div class="col p-2 ">
+                        <input Id="dtNasc" type="text" class="form-control" placeholder="Data de Nascimento"
+                            aria-label="Data de Nascimento" required />
+                    </div>
                 </div>
 
             </form>
             <!-- <form action="/users" method="get"> -->
             <div class="row">
-                <div class="col p-2 ">
-                    <input Id="dtNasc" type="text" class="form-control" placeholder="Data de Nascimento"
-                        aria-label="Data de Nascimento" required />
-                </div>
+
                 <div class="col p-2 ">
                     <select Id="sexo" class="form-select form-control " aria-label=".form-select-sm example">
                         <option selected>Sexo</option>
@@ -87,18 +88,53 @@
                         <option value="3">Prefiro não informar</option>
                     </select>
                 </div>
-
                 <div class="col p-2 ">
                     <input Id="telefone" type="number" class="form-control" placeholder="Telefone" aria-label="Telefone"
                         required />
                 </div>
-                <div class="col p-2 ">
-                    <select Id="pcd" class="form-select form-control " aria-label=".form-select-sm example">
-                        <option selected>PCD</option>
-                        <option value="1">Sim</option>
-                        <option value="2">Não</option>
-
+                <div id="disability-form" class="col p-2 ">
+                    <select Id="hasDisability" class="form-select form-control " aria-label=".form-select-sm example">
+                        <option selected id="hasDisability">PCD</option>
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
                     </select>
+                    
+                </div>
+                <div id="disabilityTypes" style="display: none;">
+
+                    <div class="col p-2 bg-light form-control">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" Id="fisica">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Física
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" Id="visual">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Visual
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" Id="auditiva">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Auditiva
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" name="intelectual">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Intelectual
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" name="multipla">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Deficiência múltipla
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 <div class="col p-2 was-validated">
                     <input id="numero" type="number" class="form-control" placeholder="N° pessoas na família"
@@ -113,14 +149,10 @@
                     Validar
                 </button>
             </div>
-
             <!-- ########################## COMPOSIÇÃO FAMILIAR ################################################ -->
             <div id="formularios"></div>
-
         </div>
         </form>
-    
-    
 
         <!-- ############################# ENDEREÇO ################### -->
         <div Id="container" class="container mt-3">
@@ -134,7 +166,8 @@
             <form action="/action_page.php">
                 <div class="row">
                     <div class="col p-2 ">
-                        <input Id="cep" type="number" class="form-control" placeholder="CEP " aria-label="CEP" />
+                        <input Id="cep" type="text" class="form-control" placeholder="CEP " aria-label="CEP"
+                            onblur="pesquisacep(this.value);" />
                     </div>
                     <div class="col p-2 ">
                         <input Id="rua" type="text" class="form-control" placeholder="Rua " aria-label="Rua" />
@@ -149,6 +182,12 @@
                 <div class="row">
                     <div class="col p-2 ">
                         <input Id="bairro" type="text" class="form-control" placeholder="Bairro" aria-label="Bairro" />
+                    </div>
+                    <div class="col p-2 ">
+                        <input Id="cidade" type="text" class="form-control" placeholder="Cidade" aria-label="cidade" />
+                    </div>
+                    <div class="col p-2 ">
+                        <input Id="uf" type="text" class="form-control" placeholder="Estado" aria-label="uf" />
                     </div>
 
                     <div class="col p-2 ">

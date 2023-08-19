@@ -1,46 +1,19 @@
-// ##############    buscar informações do CEP     ##############
-
-// document.getElementById("buscar").addEventListener("click", function() {
-//     const cepInput = document.getElementById("cep").value;
-//     const url = `https://viacep.com.br/ws/${cepInput}/json/`;
-    
-//     fetch(url)
-//       .then(response => response.json())
-//       .then(data => {
-//         if (data.erro) {
-//           document.getElementById("resultado").innerHTML = "CEP não encontrado.";
-//         } else {
-//           const endereco = `
-//             <p><strong>CEP:</strong> ${data.cep}</p>
-//             <p><strong>Logradouro:</strong> ${data.logradouro}</p>
-//             <p><strong>Bairro:</strong> ${data.bairro}</p>
-//             <p><strong>Cidade:</strong> ${data.localidade}</p>
-//             <p><strong>Estado:</strong> ${data.uf}</p>
-//           `;
-//           document.getElementById("resultado").innerHTML = endereco;
-//         }
-//       })
-//       .catch(error => {
-//         console.error("Ocorreu um erro na busca: ", error);
-//       });
-// });
-
 // ##############    Ampliar opções do formulário     ##############
-document.getElementById("gerar").addEventListener("click", function() {
-  const numeroFormularios = parseInt(document.getElementById("numero").value);
-  const formulariosContainer = document.getElementById("formularios");
-  formulariosContainer.innerHTML = '';
-
-  for (let i = 0; i < numeroFormularios; i++) {
-    const formulario = `
-      <div class="container">
+document.getElementById("gerar").addEventListener("click", function () {
+    const numeroFormularios = parseInt(document.getElementById("numero").value);
+    const formulariosContainer = document.getElementById("formularios");
+    formulariosContainer.innerHTML = `
+    <div class="container">
         <div class="row">
-            <div id="header" class="container">
-                <h3>Composição familiar</h3>
+           <div id="header" class="container">
+                <h3>Cadastro familiar</h3>
             </div>
         </div>
-      </div>
- 
+    </div>`;
+
+    for (let i = 0; i < numeroFormularios; i++) {
+        const formulario = `
+      
   <form action="/action_page.php">
       <div class="row">
         <div class="col p-2 was-validated">
@@ -90,12 +63,109 @@ document.getElementById("gerar").addEventListener("click", function() {
       <textarea class="form-control" placeholder="Leave a comment here" name="observacao"></textarea>
       <label for="floatingTextarea">Observações relevantes: doenças, cuidados, etc...</label>
   </div>
+  <br>
 
 
       `;
-      formulariosContainer.innerHTML += formulario;
+        formulariosContainer.innerHTML += formulario;
     }
 });
+
+// ##############    buscar informações do CEP     ##############
+
+function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('rua').value = ("");
+    document.getElementById('bairro').value = ("");
+    document.getElementById('cidade').value = ("");
+    document.getElementById('uf').value = ("");
+}
+
+function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+        //Atualiza os campos com os valores.
+        document.getElementById('rua').value = (conteudo.logradouro);
+        document.getElementById('bairro').value = (conteudo.bairro);
+        document.getElementById('cidade').value = (conteudo.localidade);
+        document.getElementById('uf').value = (conteudo.uf);
+    } //end if.
+    else {
+        //CEP não Encontrado.
+        limpa_formulário_cep();
+        alert("CEP não encontrado.");
+    }
+}
+
+function pesquisacep(valor) {
+
+    //Nova variável "cep" somente com dígitos.
+    var cep = valor.replace(/\D/g, '');
+
+    //Verifica se campo cep possui valor informado.
+    if (cep != "") {
+
+        //Expressão regular para validar o CEP.
+        var validacep = /^[0-9]{8}$/;
+
+        //Valida o formato do CEP.
+        if (validacep.test(cep)) {
+
+            //Preenche os campos com "..." enquanto consulta webservice.
+            document.getElementById('rua').value = "...";
+            document.getElementById('bairro').value = "...";
+            document.getElementById('cidade').value = "...";
+            document.getElementById('uf').value = "...";
+
+            //Cria um elemento javascript.
+            var script = document.createElement('script');
+
+            //Sincroniza com o callback.
+            script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+            //Insere script no documento e carrega o conteúdo.
+            document.body.appendChild(script);
+
+        } //end if.
+        else {
+            //cep é inválido.
+            limpa_formulário_cep();
+            alert("Formato de CEP inválido.");
+        }
+    } //end if.
+    else {
+        //cep sem valor, limpa formulário.
+        limpa_formulário_cep();
+    }
+};
+
+
+// ##############    Habilitar formulário deficiência    ##############
+const hasDisabilitySelect = document.getElementById("hasDisability");
+const disabilityTypesDiv = document.getElementById("disabilityTypes");
+
+hasDisabilitySelect.addEventListener("change", () => {
+  if (hasDisabilitySelect.value === "sim") {
+    disabilityTypesDiv.style.display = "block";
+  } else {
+    disabilityTypesDiv.style.display = "none";
+  }
+});
+
+const form = document.getElementById("disability-form");
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const selectedDisabilities = formData.getAll("disabilityType");
+
+  console.log("Possui deficiência:", hasDisabilitySelect.value);
+  console.log("Tipos de deficiência selecionados:", selectedDisabilities);
+});
+
+
+
+
 
 // ###################   Validar CPF #####################
 // document.getElementById("vaasalidar").addEventListener("click", function() {
